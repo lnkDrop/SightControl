@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>login</title>
+</head>
+<body>
+<h1>login test</h1>
+
+<div>
+    <input type="text" id="username">
+    <input type="password" id="password">
+    <button id="login">login</button>
+
+    <form action="{{ url_for('login') }}" method="post" enctype="multipart/form-data">
+        <label for="fid"><input type="file" id="fid" name="f1"></label>
+        <input type="submit" value="上传">
+    </form>
+
+</div>
+<script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.js"></script>
+<script>
+    $(function () {
+        $("#login").on('click', function () {
+            $.ajax({
+            url:"/login",    //请求的url地址
+            dataType:"json",   //返回格式为json
+            async:true,//请求是否异步，默认为异步，这也是ajax重要特性
+            data:{
+                "password" : $('#password').val(),
+                "username" : $('#username').val()
+                },    //参数值
+            type:"post",   //请求方式
+            beforeSend:function(){
+                //请求前的处理
+            },
+            success:function(req){
+                //请求成功时处理
+                console.log(req)
+            },
+            complete:function(){
+                //请求完成的处理
+            },
+            error:function(){
+                //请求出错处理
+            }
+});
+        })
+    })
+</script>
+</body>
+</html>

@@ -1,0 +1,86 @@
+<!doctype html>
+<html>
+<script src="../static/js/main.js"></script>
+<body>
+<video id="webcam" width="400" height="300" autoplay></video>
+<canvas id="overlay" width="400" height="300"></canvas>
+<style>
+    #webcam, #overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+    }
+</style>
+
+<canvas id="eyes" width="50" height="25"></canvas>
+<style>
+    #eyes {
+        position: absolute;
+        top: 0;
+        left: 400px;
+    }
+</style>
+
+
+<!-- <button id="train">Train!</button>
+<style>
+    #train {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        font-size: 24pt;
+    }
+</style> -->
+
+<!-- <div id="target"></div>
+<style>
+    #target {
+        background-color: lightgreen;
+        position: absolute;
+        border-radius: 50%;
+        height: 40px;
+        width: 40px;
+        transition: all 0.1s ease;
+        box-shadow: 0 0 20px 10px white;
+        border: 4px solid rgba(0,0,0,0.5);
+    }
+</style>
+-->
+
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+<script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@0.12.0"></script>
+<script src="static/js/clmtrackr.js"></script>
+<script src="static/js/main.js"></script>
+
+<script>
+    $(function () {
+        $("#login").on('click', function () {
+            $.ajax({
+            url:"/home",    //请求的url地址
+            dataType:"json",   //返回格式为json
+            async:true,//请求是否异步，默认为异步，这也是ajax重要特性
+            data:{
+                "img" : $('#img').val()
+                },    //参数值
+            type:"post",   //请求方式
+            beforeSend:function(){
+                //请求前的处理
+            },
+            success:function(req){
+                //请求成功时处理
+                console.log(req)
+            },
+            complete:function(){
+                //请求完成的处理
+            },
+            error:function(){
+                //请求出错处理
+            }
+});
+        })
+    })
+</script>
+</body>
+</html>
