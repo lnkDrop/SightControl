@@ -1,4 +1,4 @@
-# Links From Eyes
+# Link From Eyes
 ### 暂时起这个名字
 - 这是个毕业设计
 - 它还没有完成
