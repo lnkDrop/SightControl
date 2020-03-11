@@ -4,7 +4,7 @@
 
 from flask import Flask, render_template, json, request, jsonify, redirect, url_for
 from datetime import timedelta
-
+import base64
 app = Flask(__name__, template_folder='view')
 app.config['SEND_FILE_MAX_AGE_DEFAULT'] = timedelta(seconds=1)
 
@@ -15,11 +15,14 @@ def index():
         print("get")
         return render_template('home.html')
     elif request.method == 'POST':
-        img = request.form.get('img')
+        imgbase64 = request.form.get('img')
+
+
         label = request.form.get('label')
-        print("img:",img)
-        print("label:",label)
+        print("img:", img)
+        print("label:", label)
         return render_template('home.html')
+
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():

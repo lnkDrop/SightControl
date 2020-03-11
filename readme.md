@@ -1,4 +1,4 @@
-# Link From Eyes
+# AI can see
 ### 暂时起这个名字
 - 这是个毕业设计
 - 它还没有完成
