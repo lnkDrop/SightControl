@@ -4,23 +4,40 @@
 
 from flask import Flask, render_template, json, request, jsonify, redirect, url_for
 from datetime import timedelta
-import base64
+import base64, torch, cv2
+import numpy as np
+
 app = Flask(__name__, template_folder='view')
 app.config['SEND_FILE_MAX_AGE_DEFAULT'] = timedelta(seconds=1)
+npList = []
+count = 0
+
+
+def getImgData(imgData, label):
+    # 引用全局变量count
+    global count
+    # 转换进制
+    imgData = base64.b64decode(imgData.split(',', 1)[1])  # 裁剪下前端传来的base64字符格式
+    nparr = np.frombuffer(imgData, np.uint8)
+    # torchnp = torch.from_numpy(nparry)
+    img_np = cv2.imdecode(nparr, cv2.IMREAD_COLOR)
+    # label作为图像名字传入，方便制作数据集
+    cv2.imwrite('static/imgData/' + str(count) + '_' + label + '.png', img_np)
+    count += 1
+    return
 
 
 @app.route('/home', methods=['GET', 'POST'])
 def index():
+    i = 0
     if request.method == 'GET':
         print("get")
         return render_template('home.html')
     elif request.method == 'POST':
-        imgbase64 = request.form.get('img')
-
-
+        img = request.form.get('img')
         label = request.form.get('label')
-        print("img:", img)
-        print("label:", label)
+
+        getImgData(img, label)
         return render_template('home.html')
 
 
