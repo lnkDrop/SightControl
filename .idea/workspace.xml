@@ -1,21 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="3742a0e6-d208-4784-bb50-03ebe3b87e63" name="默认更改列表" comment="">
-      <change afterPath="$PROJECT_DIR$/Network.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/commons.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/datasetTest.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/interface.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/train_test.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/view/learn.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app.py" beforeDir="false" afterPath="$PROJECT_DIR$/app.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/base64Show.py" beforeDir="false" afterPath="$PROJECT_DIR$/base64Show.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/js/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/static/js/main.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/training.py" beforeDir="false" afterPath="$PROJECT_DIR$/training.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/view/home.html" beforeDir="false" afterPath="$PROJECT_DIR$/view/home.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/view/login.html" beforeDir="false" afterPath="$PROJECT_DIR$/view/login.html" afterDir="false" />
-    </list>
+    <list default="true" id="3742a0e6-d208-4784-bb50-03ebe3b87e63" name="默认更改列表" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -413,7 +399,7 @@
       <workItem from="1583926491662" duration="7879000" />
       <workItem from="1583934423108" duration="8946000" />
       <workItem from="1583988246088" duration="40957000" />
-      <workItem from="1584072730962" duration="30665000" />
+      <workItem from="1584072730962" duration="31347000" />
     </task>
     <task id="LOCAL-00001" summary="update">
       <created>1583908461897</created>
@@ -429,16 +415,23 @@
       <option name="project" value="LOCAL" />
       <updated>1583943688583</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="3/13 成功预测">
+      <created>1584112664647</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1584112664648</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="122261000" />
+    <option name="totallyTimeSpent" value="122943000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1295" height="695" extended-state="6" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.283751" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.283751" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -492,7 +485,8 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="update" />
     <MESSAGE value="3/12 Get dataset" />
-    <option name="LAST_COMMIT_MESSAGE" value="3/12 Get dataset" />
+    <MESSAGE value="3/13 成功预测" />
+    <option name="LAST_COMMIT_MESSAGE" value="3/13 成功预测" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
