@@ -41,13 +41,15 @@
         border-radius: 50%;
         height: 40px;
         width: 40px;
+        left: 50%;
+        top: 50%;
         transition: all 0.1s ease;
         box-shadow: 0 0 20px 10px white;
         border: 4px solid rgba(0, 0, 0, 0.5);
     }
 </style>
 
-<button id="#">Go！</button>
+<button id="train">Go！</button>
 <style>
     #train {
         position: absolute;
@@ -58,96 +60,95 @@
     }
 </style>
 
-<button id="top_right">2</button>
-<style>
-    #top_right {
-        position: absolute;
-        top: 10%;
-        right: 10%;
-        transform: translate(-50%, -50%);
-        font-size: 24pt;
-    }
-</style>
+<!--<button id="top_right">2</button>-->
+<!--<style>-->
+    <!--#top_right {-->
+        <!--position: absolute;-->
+        <!--top: 10%;-->
+        <!--right: 10%;-->
+        <!--transform: translate(-50%, -50%);-->
+        <!--font-size: 24pt;-->
+    <!--}-->
+<!--</style>-->
 
-<button id="right">3</button>
-<style>
-    #right {
-        position: absolute;
-        bottom: 50%;
-        right: 10%;
-        transform: translate(-50%, -50%);
-        font-size: 24pt;
-    }
-</style>
+<!--<button id="right">3</button>-->
+<!--<style>-->
+    <!--#right {-->
+        <!--position: absolute;-->
+        <!--bottom: 50%;-->
+        <!--right: 10%;-->
+        <!--transform: translate(-50%, -50%);-->
+        <!--font-size: 24pt;-->
+    <!--}-->
+<!--</style>-->
 
-<button id="bottom_right">4</button>
-<style>
-    #bottom_right {
-        position: absolute;
-        bottom: 10%;
-        right: 10%;
-        transform: translate(-50%, -50%);
-        font-size: 24pt;
-    }
-</style>
-
-
-<button id="bottom">5</button>
-<style>
-    #bottom {
-        position: absolute;
-        bottom: 10%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        font-size: 24pt;
-    }
-</style>
-
-<button id="bottom_left">6</button>
-<style>
-    #bottom_left {
-        position: absolute;
-        bottom: 10%;
-        left: 10%;
-        transform: translate(-50%, -50%);
-        font-size: 24pt;
-    }
-</style>
-
-<button id="left">7</button>
-<style>
-    #left {
-        position: absolute;
-        bottom: 50%;
-        left: 10%;
-        transform: translate(-50%, -50%);
-        font-size: 24pt;
-    }
-</style>
+<!--<button id="bottom_right">4</button>-->
+<!--<style>-->
+    <!--#bottom_right {-->
+        <!--position: absolute;-->
+        <!--bottom: 10%;-->
+        <!--right: 10%;-->
+        <!--transform: translate(-50%, -50%);-->
+        <!--font-size: 24pt;-->
+    <!--}-->
+<!--</style>-->
 
 
+<!--<button id="bottom">5</button>-->
+<!--<style>-->
+    <!--#bottom {-->
+        <!--position: absolute;-->
+        <!--bottom: 10%;-->
+        <!--left: 50%;-->
+        <!--transform: translate(-50%, -50%);-->
+        <!--font-size: 24pt;-->
+    <!--}-->
+<!--</style>-->
 
-<button id="top_left">8</button>
-<style>
-    #top_left {
-        position: absolute;
-        top: 10%;
-        left: 30%;
-        transform: translate(-50%, -50%);
-        font-size: 24pt;
-    }
-</style>
+<!--<button id="bottom_left">6</button>-->
+<!--<style>-->
+    <!--#bottom_left {-->
+        <!--position: absolute;-->
+        <!--bottom: 10%;-->
+        <!--left: 10%;-->
+        <!--transform: translate(-50%, -50%);-->
+        <!--font-size: 24pt;-->
+    <!--}-->
+<!--</style>-->
 
-<button id="top">1</button>
-<style>
-    #top {
-        position: absolute;
-        top: 10%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        font-size: 24pt;
-    }
-</style>
+<!--<button id="left">7</button>-->
+<!--<style>-->
+    <!--#left {-->
+        <!--position: absolute;-->
+        <!--bottom: 50%;-->
+        <!--left: 10%;-->
+        <!--transform: translate(-50%, -50%);-->
+        <!--font-size: 24pt;-->
+    <!--}-->
+<!--</style>-->
+
+
+<!--<button id="top_left">8</button>-->
+<!--<style>-->
+    <!--#top_left {-->
+        <!--position: absolute;-->
+        <!--top: 10%;-->
+        <!--left: 30%;-->
+        <!--transform: translate(-50%, -50%);-->
+        <!--font-size: 24pt;-->
+    <!--}-->
+<!--</style>-->
+
+<!--<button id="top">1</button>-->
+<!--<style>-->
+    <!--#top {-->
+        <!--position: absolute;-->
+        <!--top: 10%;-->
+        <!--left: 50%;-->
+        <!--transform: translate(-50%, -50%);-->
+        <!--font-size: 24pt;-->
+    <!--}-->
+<!--</style>-->
 <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 <script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@0.12.0"></script>
@@ -158,7 +159,7 @@
     $(function () {
         $("#login").on('click', function () {
             $.ajax({
-                url: "/home",    //请求的url地址
+                url: "/learn",    //请求的url地址
                 dataType: "json",   //返回格式为json
                 async: true,//请求是否异步，默认为异步，这也是ajax重要特性
                 data: {

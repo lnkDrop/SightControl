@@ -7,9 +7,9 @@ base64_data = "iVBORw0KGgoAAAANSUhEUgAAADIAAAAZCAYAAABzVH1EAAAKjUlEQVRYR0WY65IbV
 
 imgData = base64.b64decode(base64_data)
 nparr = np.frombuffer(imgData, np.uint8)
-# img_np = cv2.imdecode(nparr, cv2.IMREAD_COLOR)
+img_np = cv2.imdecode(nparr, cv2.IMREAD_COLOR)
 
 # cv2.imshow("test",img_np)
 # cv2.waitKey(0)
 # torchnp = torch.from_numpy(nparr)
-print(imgData)
+print(img_np)
