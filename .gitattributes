@@ -1,2 +1,2 @@
 *. text = auto
-*.js linguist-language=[Python]
+*.JavaScript linguist-language=python
