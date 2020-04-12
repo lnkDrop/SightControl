@@ -21,7 +21,7 @@ $(document).ready(function () {
 
     // 面部追踪
     function trackingLoop() {
-        // Check if a face is detected, and if so, track it.
+        // 检查是否检测到脸部，如果有，请对其进行跟踪。
         requestAnimationFrame(trackingLoop);
         let currentPosition = ctrack.getCurrentPosition();
 
@@ -72,13 +72,12 @@ $(document).ready(function () {
         .then(onStreaming);
 
     // 获得鼠标位置坐标:
-    // Track mouse movement:
     const mouse = {
         x: 0,
         y: 0,
 
         handleMouseMove: function (event) {
-            // Get the mouse position and normalize it to [-1, 1]
+            // client得到相对坐标(浏览器中)
             mouse.x = event.clientX;
             mouse.y = event.clientY;
         },
@@ -95,19 +94,17 @@ $(document).ready(function () {
 
 //绑定到空格
     $('body').keyup(function (event) {
-        // On space key:
 
         if (event.keyCode == 32) {
-            // alert('空格');
-            let src = convertCanvasToImage($('#eyes')[0]);
+            let img = convertCanvasToImage($('#eyes')[0]);
             $.ajax({
                 url: "/home",    //请求的url地址
                 dataType: "JSON",   //返回格式为json
-                async: true,//请求是否异步，默认为异步，这也是ajax重要特性
+                async: true,//请求是否异步，默认为异步
                 data: {
-                    "img": src,
-                    "label": mouse.x + '_' + mouse.y
-                },    //参数值
+                    "img": img,  //传送图片的base64数据
+                    "label": mouse.x + '_' + mouse.y //传送鼠标位置数据
+                },
                 type: "POST",   //请求方式
                 beforeSend: function () {
                     //请求前的处理
@@ -128,28 +125,28 @@ $(document).ready(function () {
         }
     });
 
-
+    //传输当前眼部数据到后台，并获取预测位置数据将其实施绘制到屏幕
     function moveTarget() {
-        let src = convertCanvasToImage($('#eyes')[0]);
+        let img = convertCanvasToImage($('#eyes')[0]);
         $.ajax({
-            url: "/learn",    //请求的url地址
-            dataType: "JSON",   //返回格式为json
-            async: true,//请求是否异步，默认为异步，这也是ajax重要特性
+            url: "/learn",
+            dataType: "JSON",
+            async: true,
             data: {
-                "img": src,
+                "img": img,
                 "label": mouse.x + '_' + mouse.y
-            },    //参数值
-            type: "POST",   //请求方式
+            },
+            type: "POST",
             beforeSend: function () {
                 //请求前的处理
             },
             success: function (req) {
-                //请求成功时处理
+                //请求成功时获取预测数据req(获取到的json数据)
 
                 const x = req.x;
                 const y = req.y;
 
-                // Move target there:
+                // 移动:
                 const $target = $('#target');
                 $target.css('left', x + 'px');
                 $target.css('top', y + 'px');
@@ -167,8 +164,8 @@ $(document).ready(function () {
         return false;
     }
 
+    //按下train开始预测
     $('#train').click(function () {
-        // moveTarget()
         setInterval(moveTarget, 100);
     });
 })

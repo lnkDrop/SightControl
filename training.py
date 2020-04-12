@@ -5,7 +5,7 @@ import torch
 import torch.optim as optim
 import torch.nn.functional as F
 from torch.utils.data.dataloader import DataLoader
-from torchvision import transforms, datasets
+from torchvision import transforms
 import os
 from Network import Network
 from torchvision.datasets import ImageFolder
@@ -63,19 +63,7 @@ test_dataloader = DataLoader(dataset=test_dataset,
                              shuffle=True,
                              )
 
-sample = next(iter(train_dataset))
-image, label = sample
-# print(image.shape)
-batch = next(iter(train_dataloader))
-images, lables = batch
-
-# print(lables)
-
-
 network = Network()
-
-
-# print(network)
 
 
 def get_num_correct(preds, labels):
@@ -102,16 +90,7 @@ def training(epoch):
             optimizer.step()  # Update Weights
 
             total_loss += loss.item()
-            total_correct += get_num_correct(preds, lables)
-            # if (i % 10 == 0):
-            #     correct = 0.0
-            #     total = 0.0
-            #     network.eval()
-            #     with torch.no_grad():
-            #         for test_data in test_dataloader:
-            #             test_images, test_lables = test_data
-            #             test_outouts = network(test_images)
-            #             test_loss = F.cross_entropy(preds, labels)
+            total_correct += get_num_correct(preds, labels)
         print(
             "epoch", epoch,
             "total_correct:", total_correct,
@@ -122,30 +101,6 @@ def training(epoch):
 
 
 # training(150)
-#
-# # preds = network(images)
-#
-#
-# @torch.no_grad()
-# def get_all_preds(model, loader):
-#     all_preds = torch.tensor([])
-#     for batch in loader:
-#         images, labels = batch
-#
-#         preds = model(images)
-#         all_preds = torch.cat(
-#             (all_preds, preds)
-#             , dim=0
-#         )
-#     return all_preds
-
-
-#
-#
-# torch.save(network, 'model/model.pt')
-# model = torch.load('model/model.pt')
-# model.eval()
-
 the_model = Network()
 the_model.load_state_dict(torch.load('model/model.pt'))
 correct = 0.0
@@ -158,7 +113,3 @@ with torch.no_grad():
         correct += (predicted == lables).sum()
         total += lables.size(0)
 print('准确率:', float(correct) / total)
-#
-# sample = next(iter(train_dataset))
-# image, label = sample
-# print(the_model.forward(images))

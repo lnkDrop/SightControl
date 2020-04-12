@@ -8,24 +8,21 @@ import base64, torch, cv2
 import numpy as np
 import os
 
-# import training
-
 app = Flask(__name__, template_folder='view')
 app.config['SEND_FILE_MAX_AGE_DEFAULT'] = timedelta(seconds=1)
 npList = []
 count = 0
 
 
-def getImgData(imgData, label):
-    # 引用全局变量count
+def get_img_data(img_data, label):
+    # 引用全局变量count 用于给图片命名
     global count
     # 转换进制
-    imgData = base64.b64decode(imgData.split(',', 1)[1])  # 裁剪下前端传来的base64字符格式
-    nparr = np.frombuffer(imgData, np.uint8)
-    # torchnp = torch.from_numpy(nparry)
-    img_np = cv2.imdecode(nparr, cv2.IMREAD_COLOR)
-    label_path = 'static/imgData/%s' % (str(label))
-    img_path = 'static/imgData/%s/%s.png' % (str(label), str(count))
+    img_data = base64.b64decode(img_data.split(',', 1)[1])  # 裁剪下前端传来的img_data,只需要base64格式的字符就行
+    np_arr = np.frombuffer(img_data, np.uint8)
+    img_np = cv2.imdecode(np_arr, cv2.IMREAD_COLOR)
+    label_path = 'static/imgData/%s' % (str(label))  # 位置坐标的存储位置(文件夹名)
+    img_path = 'static/imgData/%s/%s.png' % (str(label), str(count))  # 图片的存储位置
     if not os.path.exists(label_path):
         os.mkdir(label_path)
     cv2.imwrite(img_path, img_np)
@@ -34,43 +31,41 @@ def getImgData(imgData, label):
 
 
 @app.route('/')
-def redict():
-    return redirect('home')
+def redirect():
+    return redirect('home.html')
 
 
 @app.route('/home', methods=['GET', 'POST'])
 def index():
-    i = 0
     if request.method == 'GET':
         return render_template('home.html')
     elif request.method == 'POST':
-        # 收集训练数据
+        # 训练
+        # 收集前端发送过来的数据
         img = request.form.get('img')
         label = request.form.get('label')
-        getImgData(img, label)
-
+        # 对数据进行处理并存储     flag：优化—存储到缓存
+        get_img_data(img, label)
         return render_template('home.html')
 
 
 @app.route('/learn', methods=['GET', 'POST'])
 def learn():
-    i = 0
     if request.method == 'GET':
-        print("get")
         return render_template('learn.html')
     elif request.method == 'POST':
-        from interface import get_prediction
         # 预测
+        from prediction import get_prediction  # 接口
         img = request.form.get('img')
-        imgData = base64.b64decode(img.split(',', 1)[1])  # 裁剪下前端传来的base64字符格式
-        pos = get_prediction(imgData)
+        img_data = base64.b64decode(img.split(',', 1)[1])  # 裁剪下前端传来的base64字符格式
+        pos = get_prediction(img_data)  # 获取class_name即坐标
         return jsonify({
             'x': pos[0],
             'y': pos[1]
         })
 
 
-@app.route('/login', methods=['GET', 'POST'])
+@app.route('/login', methods=['GET', 'POST'])  # 保留功能
 def login():
     if request.method == 'GET':
         return render_template('login.html')
@@ -78,25 +73,17 @@ def login():
         username = request.form.get('username')
         password = request.form.get('password')
         print(username, password)
-        return jsonify({
-            'static': 0,
-            'massage': '111'
-        })
-    else:
-        return jsonify({
-            'static': 1,
-            'massage': '222'
-        })
-
-
-@app.route("/upload_row/", endpoint="upload_row", methods=["GET", "POST"])
-def upload_row():
-    # 文件对象保存在request.files上，并且通过前端的input标签的name属性来获取
-    fp = request.files.get("f1")
-    # 保存文件到服务器本地
-    fp.save("a.jpg")
-    return redirect(url_for("login.index"))
+        if(username==str(123) and password==str(123)):
+            return jsonify({
+                'static': 0,
+                'massage': '验证成功'
+            })
+        else:
+            return jsonify({
+                'static': 1,
+                'massage': '验证失败'
+            })
 
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(debug=True,port=8000)

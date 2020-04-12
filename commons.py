@@ -15,6 +15,7 @@ def get_model():
     return the_model
 
 
+# 处理前端传来的图片，准备预测
 def tensorfrom_img(base64_data):
     data_transform = transforms.Compose([
         transforms.Resize((28, 28)),
@@ -23,9 +24,10 @@ def tensorfrom_img(base64_data):
     ])
 
     image = Image.open(io.BytesIO(base64_data)).convert('RGB')
+    # 进入网络前需要展平
     return data_transform(image).unsqueeze(0)
 
-
+# 获取类别名(坐标)的方法
 def format_class_name(label):
     class_name = get_classes()
     class_name = class_name[eval(label)]
